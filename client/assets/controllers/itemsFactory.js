@@ -4,7 +4,7 @@ app.factory('itemsFactory', ['$http', function($http) {
     function itemsFactory(){
         this.create = function(newItem, callback){
             $http.post('/item', newItem).then(function(json){
-                //console.log(json);
+                callback();
             });
         }
         this.show = function(id, callback){
@@ -15,7 +15,7 @@ app.factory('itemsFactory', ['$http', function($http) {
         }
         this.update = function(id){
             $http.put('/item/' + id).then(function(json){
-                //console.log(json);
+                callback();
             })
         }
 

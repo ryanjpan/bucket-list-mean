@@ -1,5 +1,5 @@
-app.controller('dashController', ['$scope','usersFactory', 'itemsFactory','$location', '$rootScope',
-function(sc, uf, itf, loc, rs) {
+app.controller('dashController', ['$scope','usersFactory', 'itemsFactory','$location', '$rootScope', '$route',
+function(sc, uf, itf, loc, rs, r) {
     if(!rs.user){
         loc.url('/');
         return;
@@ -25,13 +25,15 @@ function(sc, uf, itf, loc, rs) {
         }
         sc.newItem.OC = rs.user.name;
         sc.newItem.appendtousers = appendtousers;
-        itf.create(sc.newItem);
-        sc.newItem = {}
-        loaduser();
+        itf.create(sc.newItem, function(){
+            sc.newItem = {}
+            r.reload();
+        })
     }
 
     sc.updateItem = function(id){
-        itf.update(id);
-        loaduser();
+        itf.update(id, function(){
+            loaduser();
+        });
     }
 }]);

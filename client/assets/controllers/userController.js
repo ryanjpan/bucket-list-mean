@@ -22,8 +22,12 @@ function(sc, uf, itf, loc, rs, rp) {
 
     sc.updateItem = function(item){
         if(rp.id == rs.user._id || rs.user.name == item.OC || userTagged(item)){
-            itf.update(item._id);
+            itf.update(item._id, function(){
+                loaduser();
+            });
         }
-        loaduser();
+        else{
+            loaduser();
+        }
     }
 }]);
