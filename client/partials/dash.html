@@ -1,0 +1,27 @@
+<div>
+    <h3>Bucket List</h3> <a href="#!/dashboard">Home</a> | <a href="#!/">Logout</a>
+    <hr>
+    <h2>Welcome, {{user.name}}</h2>
+    <div>
+        <form ng-submit="addItem()">
+            <p>
+                <input type="text" ng-model="newItem.title" placeholder="Title">
+                <input type="text" ng-model="newItem.description" placeholder="Description">
+                <select ng-model="newItem.taggedUser">
+                    <option ng-repeat="user in users" value="{{user._id}}">{{user.name}}</option>
+                </select>
+                <input type="submit" value="Add to List">
+            </p>
+        </form>
+    </div>
+    <div>
+        <p>Before I die I want to...</p>
+        <p ng-repeat="item in user.items" ng-if="!item.checked"><input type="checkbox" ng-click="updateItem(item._id)"> {{item.OC}} | {{item.title}} - {{item.description}} - {{item.created_at | date: 'mediumDate'}}</p>
+        <p ng-repeat="item in user.items" ng-if="item.checked"><input type="checkbox" checked ng-click="updateItem(item._id)"> {{item.OC}} | {{item.title}} - {{item.description}} - {{item.created_at | date: 'mediumDate'}}</p>
+    </div>
+    <div>
+        <p>List of other users (Click to view profile)</p>
+        <p ng-repeat="user in users"><a href="#!/user/{{user._id}}">{{user.name}}</a></p>
+    </div>
+
+</div>

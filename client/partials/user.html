@@ -1,0 +1,15 @@
+<div>
+    <h3>Bucket List</h3> <a href="#!/dashboard">Home</a> | <a href="#!/">Logout</a>
+    <hr>
+    <h3>{{userpage.name}}'s Bucket List</h3>
+    <p>Done</p>
+    <p ng-repeat="item in userpage.items" ng-if="item.checked">
+        <input type="checkbox" ng-click="updateItem(item)" checked> {{item.OC}} | {{item.title}} - {{item.description}} - {{item.created_at | date: 'mediumDate'}}
+    </p>
+    <br>
+    <p>Pending</p>
+    <p ng-repeat="item in userpage.items" ng-if="!item.checked">
+        <input type="checkbox" ng-click="updateItem(item)"> {{item.OC}} | {{item.title}} - {{item.description}} - {{item.created_at | date: 'mediumDate'}}
+    </p>
+
+</div>
